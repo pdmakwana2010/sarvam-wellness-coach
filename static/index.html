@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sarvam Wellness Coach | Indic Health Intelligence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Outfit"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              400: '#34d399',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-display { font-family: 'Outfit', sans-serif; }
+    .glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.6);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .gradient-border {
+      position: relative;
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(to bottom right, rgba(16, 185, 129, 0.5), rgba(56, 189, 248, 0.1), transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-brand-500 selection:text-white">
+
+  <!-- Ambient Glow -->
+  <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-brand-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+  <!-- Header -->
+  <header class="border-b border-slate-800/80 sticky top-0 z-50 glass">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-brand-500/20">
+          <svg class="w-5 h-5 text-slate-950 font-bold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+          </svg>
+        </div>
+        <div>
+          <h1 class="font-display font-bold text-lg tracking-tight text-white flex items-center gap-2">
+            Sarvam Wellness Coach
+            <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full bg-brand-500/20 text-brand-400 border border-brand-500/30">AI Indic Core</span>
+          </h1>
+          <p class="text-xs text-slate-400">Conversational Voice & Health Intelligence</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 text-xs">
+        <span class="hidden sm:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-800 text-slate-400">
+          <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+          sarvam-105b-conversations + bulbul:v3
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-8">
+    
+    <!-- Hero Title -->
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-2">
+        Daily Voice Health Check-In
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base">
+        Speak or paste your meals, workouts, and sleep in natural code-mixed Indian languages. No tedious manual logging needed.
+      </p>
+    </div>
+
+    <!-- Input Section -->
+    <div class="glass-card gradient-border rounded-2xl p-6 sm:p-7 shadow-2xl mb-8">
+      <div class="flex items-center justify-between mb-3">
+        <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+          <svg class="w-4 h-4 text-brand-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/>
+          </svg>
+          Tell your coach about your day
+        </label>
+        <button id="micBtn" onclick="toggleVoiceInput()" class="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-300 transition-all">
+          <span id="micDot" class="w-2 h-2 rounded-full bg-red-500 hidden"></span>
+          <span id="micText">🎙️ Mic Input</span>
+        </button>
+      </div>
+
+      <textarea id="checkInInput" rows="3" class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl p-4 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500/50 focus:border-brand-500 text-sm transition-all" placeholder="E.g.: 'Subah 2 methi parathe dahi ke sath khaye. Lunch me rajma chawal with salad. Sham ko 45 min dumbbell workout kiya gym me. Par neend kal raat sirf 5 ghante hui, thoda tired feel ho raha hai.'"></textarea>
+
+      <!-- Quick Presets -->
+      <div class="mt-4 flex flex-wrap items-center gap-2">
+        <span class="text-xs text-slate-400 font-medium">Quick Presets:</span>
+        <button onclick="loadPreset(1)" class="text-xs px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 border border-slate-700/60 text-slate-300 transition-all">
+          🍛 Hinglish Paratha & Gym
+        </button>
+        <button onclick="loadPreset(2)" class="text-xs px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 border border-slate-700/60 text-slate-300 transition-all">
+          🥞 South Indian & Missed Workout
+        </button>
+        <button onclick="loadPreset(3)" class="text-xs px-2.5 py-1 rounded-md bg-slate-800/80 hover:bg-slate-700 border border-slate-700/60 text-slate-300 transition-all">
+          🥗 Light Diet & Gentle Yoga
+        </button>
+      </div>
+
+      <!-- Controls & Submit -->
+      <div class="mt-6 pt-5 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3 w-full sm:w-auto">
+          <label class="text-xs text-slate-400 flex items-center gap-1.5">
+            <span>Voice Voice Note:</span>
+            <select id="speakerSelect" class="bg-slate-800 border border-slate-700 text-slate-200 text-xs rounded-lg px-2.5 py-1.5 focus:outline-none focus:ring-1 focus:ring-brand-500">
+              <option value="ishita">Ishita (Female, Warm)</option>
+              <option value="simran">Simran (Female, Friendly)</option>
+              <option value="rahul">Rahul (Male, Supportive)</option>
+              <option value="aditya">Aditya (Male, Energetic)</option>
+            </select>
+          </label>
+        </div>
+
+        <button id="analyzeBtn" onclick="submitCheckIn()" class="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-emerald-500 hover:from-brand-500 hover:to-emerald-400 text-slate-950 font-semibold text-sm shadow-lg shadow-brand-500/25 flex items-center justify-center gap-2 transition-all">
+          <span id="btnText">Analyze Check-In</span>
+          <svg id="btnSpinner" class="w-4 h-4 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Error Banner -->
+    <div id="errorBanner" class="hidden mb-8 p-4 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-sm"></div>
+
+    <!-- Results Dashboard (Hidden until submitted) -->
+    <div id="resultsDashboard" class="hidden space-y-6">
+
+      <!-- Hero Audio Spoken Nudge -->
+      <div class="glass-card gradient-border rounded-2xl p-6 shadow-xl relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <h3 class="font-display font-bold text-lg text-white">Your Coach's Voice Note</h3>
+            </div>
+            <p id="spokenNudgeText" class="text-sm italic text-slate-300">"Coach response audio note..."</p>
+          </div>
+
+          <div id="audioPlayerContainer" class="flex items-center gap-3">
+            <button id="playAudioBtn" onclick="toggleAudio()" class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-brand-400 font-semibold text-xs flex items-center gap-2 transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <span>Play Voice Note</span>
+            </button>
+            <audio id="coachAudio" class="hidden"></audio>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Summary Metrics Grid -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Calories In -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800/80">
+          <div class="text-xs text-slate-400 font-medium">Calories In</div>
+          <div class="text-2xl font-display font-bold text-white mt-1">
+            <span id="statCalIn">0</span> <span class="text-xs font-normal text-slate-400">kcal</span>
+          </div>
+          <div class="mt-2 text-[11px] text-slate-400 flex justify-between">
+            <span>P: <b id="statProtein" class="text-emerald-400">0</b>g</span>
+            <span>C: <b id="statCarbs" class="text-amber-400">0</b>g</span>
+            <span>F: <b id="statFat" class="text-rose-400">0</b>g</span>
+          </div>
+        </div>
+
+        <!-- Calories Burned -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800/80">
+          <div class="text-xs text-slate-400 font-medium">Workout Burn</div>
+          <div class="text-2xl font-display font-bold text-emerald-400 mt-1">
+            <span id="statCalBurned">0</span> <span class="text-xs font-normal text-slate-400">kcal</span>
+          </div>
+          <div class="mt-2 text-[11px] text-slate-400">
+            Active energy expenditure
+          </div>
+        </div>
+
+        <!-- Net Calorie Balance -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800/80">
+          <div class="text-xs text-slate-400 font-medium">Net Calories</div>
+          <div class="text-2xl font-display font-bold text-white mt-1">
+            <span id="statNetCal">0</span> <span class="text-xs font-normal text-slate-400">kcal</span>
+          </div>
+          <div class="mt-2 text-[11px] text-slate-400">
+            Intake minus workout burn
+          </div>
+        </div>
+
+        <!-- Sleep & Energy -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800/80">
+          <div class="text-xs text-slate-400 font-medium">Sleep & Energy</div>
+          <div class="text-2xl font-display font-bold text-white mt-1 flex items-baseline gap-1.5">
+            <span id="statSleep">0</span> <span class="text-xs font-normal text-slate-400">hrs</span>
+            <span id="statEnergyBadge" class="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 font-semibold uppercase">Good</span>
+          </div>
+          <div id="statSleepNotes" class="mt-2 text-[11px] text-slate-400 truncate">Sleep notes</div>
+        </div>
+      </div>
+
+      <!-- Main Columns: Meals on Left, Workouts & Coaching on Right -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Column 1 & 2: Meals & Workouts -->
+        <div class="lg:col-span-2 space-y-6">
+
+          <!-- Meals Breakdown -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800/80">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                <span>🍛</span> Meals & Macronutrient Breakdown
+              </h3>
+              <span id="mealCount" class="text-xs text-slate-400">0 items logged</span>
+            </div>
+            <div id="mealsList" class="space-y-3">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Workouts Breakdown -->
+          <div class="glass-card rounded-2xl p-6 border border-slate-800/80">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+                <span>🏃</span> Physical Activity & Workouts
+              </h3>
+              <span id="workoutCount" class="text-xs text-slate-400">0 sessions</span>
+            </div>
+            <div id="workoutsList" class="space-y-3">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Adaptive Coaching Feedback -->
+        <div class="space-y-6">
+          <div class="glass-card rounded-2xl p-6 border border-slate-800/80 space-y-5">
+            <h3 class="font-display font-bold text-base text-white flex items-center gap-2">
+              <span>🧠</span> Coach Assessment
+            </h3>
+
+            <!-- Empathy -->
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Acknowledgement</span>
+              <p id="coachAck" class="text-xs text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Nutrition feedback -->
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Nutrition Feedback</span>
+              <p id="coachNut" class="text-xs text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Workout feedback -->
+            <div class="space-y-1">
+              <span class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Workout Feedback</span>
+              <p id="coachWork" class="text-xs text-slate-300 leading-relaxed"></p>
+            </div>
+
+            <!-- Adaptive Plan -->
+            <div class="p-4 rounded-xl bg-brand-500/10 border border-brand-500/30 space-y-1">
+              <span class="text-[11px] font-bold uppercase tracking-wider text-brand-400 flex items-center gap-1.5">
+                <span>🎯</span> Tomorrow's Adaptive Adjustment
+              </span>
+              <p id="coachAdapt" class="text-xs text-brand-200/90 leading-relaxed"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    const presets = {
+      1: "Subah 2 methi parathe dahi ke sath khaye. Lunch me rajma chawal with cucumber salad. Sham ko 45 min dumbbell workout aur 15 min cardio kiya gym me. Par neend kal raat sirf 5 ghante hui, thoda tired feel ho raha hai.",
+      2: "Breakfast me 3 idli with sambar khaya. Lunch me curd rice and papad. Aaj office me bohot busy tha to workout miss ho gaya. Neend 7 hours hui hai.",
+      3: "Aaj subah 1 glass warm lemon water aur oats khaya. Lunch me yellow dal, roti aur bhindi fry. Evening me 35 mins gentle yoga aur meditation kiya. 8 ghante achhi neend hui."
+    };
+
+    function loadPreset(id) {
+      document.getElementById('checkInInput').value = presets[id];
+    }
+
+    // Voice dictation
+    let recognition = null;
+    let isListening = false;
+    if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      recognition = new SpeechRecognition();
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.lang = 'hi-IN'; // Will pick up Hinglish easily
+
+      recognition.onstart = () => {
+        isListening = true;
+        document.getElementById('micDot').classList.remove('hidden');
+        document.getElementById('micText').innerText = 'Listening...';
+      };
+
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        const input = document.getElementById('checkInInput');
+        input.value = (input.value ? input.value + ' ' : '') + transcript;
+      };
+
+      recognition.onend = () => {
+        isListening = false;
+        document.getElementById('micDot').classList.add('hidden');
+        document.getElementById('micText').innerText = '🎙️ Mic Input';
+      };
+
+      recognition.onerror = () => {
+        isListening = false;
+        document.getElementById('micDot').classList.add('hidden');
+        document.getElementById('micText').innerText = '🎙️ Mic Input';
+      };
+    }
+
+    function toggleVoiceInput() {
+      if (!recognition) {
+        alert("Speech Recognition is not supported in this browser. Please type your check-in.");
+        return;
+      }
+      if (isListening) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    }
+
+    // Submit Check-in
+    async function submitCheckIn() {
+      const input = document.getElementById('checkInInput');
+      const text = input.value.trim();
+      const errorBanner = document.getElementById('errorBanner');
+      const resultsDashboard = document.getElementById('resultsDashboard');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const analyzeBtn = document.getElementById('analyzeBtn');
+
+      if (!text) {
+        errorBanner.innerText = "Please enter or speak a health check-in first.";
+        errorBanner.classList.remove('hidden');
+        return;
+      }
+
+      errorBanner.classList.add('hidden');
+      btnText.innerText = "Analyzing Indic Check-In...";
+      btnSpinner.classList.remove('hidden');
+      analyzeBtn.disabled = true;
+
+      try {
+        const speaker = document.getElementById('speakerSelect').value;
+        const res = await fetch('/api/checkin', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            transcript: text,
+            generate_audio: true,
+            speaker: speaker,
+            language_code: "hi-IN"
+          })
+        });
+
+        if (!res.ok) {
+          const errData = await res.json();
+          throw new Error(errData.detail || "Failed to process check-in.");
+        }
+
+        const data = await res.json();
+        renderResults(data);
+      } catch (err) {
+        errorBanner.innerText = "Error: " + err.message;
+        errorBanner.classList.remove('hidden');
+      } finally {
+        btnText.innerText = "Analyze Check-In";
+        btnSpinner.classList.add('hidden');
+        analyzeBtn.disabled = false;
+      }
+    }
+
+    // Render results
+    let currentAudio = null;
+    function renderResults(payload) {
+      const d = payload.data;
+      const resultsDashboard = document.getElementById('resultsDashboard');
+
+      // Top Stats
+      document.getElementById('statCalIn').innerText = Math.round(d.daily_totals.total_calories_in);
+      document.getElementById('statProtein').innerText = d.daily_totals.total_protein_g.toFixed(1);
+      document.getElementById('statCarbs').innerText = d.daily_totals.total_carbs_g.toFixed(1);
+      document.getElementById('statFat').innerText = d.daily_totals.total_fat_g.toFixed(1);
+
+      document.getElementById('statCalBurned').innerText = Math.round(d.daily_totals.total_calories_burned);
+      document.getElementById('statNetCal').innerText = Math.round(d.daily_totals.net_calories);
+
+      document.getElementById('statSleep').innerText = d.sleep_and_recovery.hours_slept;
+      document.getElementById('statEnergyBadge').innerText = d.sleep_and_recovery.energy_level;
+      document.getElementById('statSleepNotes').innerText = d.sleep_and_recovery.notes || 'Normal sleep';
+
+      // Spoken Nudge & Audio
+      document.getElementById('spokenNudgeText').innerText = `"${d.coach_feedback.spoken_nudge}"`;
+      const playBtn = document.getElementById('playAudioBtn');
+      const audioElem = document.getElementById('coachAudio');
+
+      if (payload.audio_base64) {
+        audioElem.src = "data:audio/wav;base64," + payload.audio_base64;
+        playBtn.classList.remove('hidden');
+        // Auto play
+        audioElem.play().catch(e => console.log("Autoplay blocked:", e));
+      } else {
+        playBtn.classList.add('hidden');
+      }
+
+      // Meals List
+      const mealsList = document.getElementById('mealsList');
+      mealsList.innerHTML = '';
+      document.getElementById('mealCount').innerText = `${d.meals.length} items logged`;
+
+      if (d.meals.length === 0) {
+        mealsList.innerHTML = `<div class="p-4 rounded-xl bg-slate-900/60 text-slate-400 text-xs text-center">No meals logged for this check-in.</div>`;
+      } else {
+        d.meals.forEach(m => {
+          mealsList.innerHTML += `
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-slate-800 text-slate-300">${m.meal_type}</span>
+                  <span class="text-sm font-semibold text-slate-100">${m.item_name}</span>
+                  <span class="text-xs text-slate-400 font-normal">(${m.portion})</span>
+                </div>
+                <div class="mt-1.5 flex items-center gap-3 text-xs text-slate-400">
+                  <span>Protein: <b class="text-emerald-400">${m.protein_g.toFixed(1)}g</b></span>
+                  <span>Carbs: <b class="text-amber-400">${m.carbs_g.toFixed(1)}g</b></span>
+                  <span>Fat: <b class="text-rose-400">${m.fat_g.toFixed(1)}g</b></span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-base font-display font-bold text-white">${Math.round(m.calories)}</span>
+                <span class="text-[10px] text-slate-400 block">kcal</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // Workouts List
+      const workoutsList = document.getElementById('workoutsList');
+      workoutsList.innerHTML = '';
+      document.getElementById('workoutCount').innerText = `${d.workouts.length} sessions`;
+
+      if (d.workouts.length === 0) {
+        workoutsList.innerHTML = `<div class="p-4 rounded-xl bg-slate-900/60 text-slate-400 text-xs text-center">No workout logged (Rest or busy day).</div>`;
+      } else {
+        d.workouts.forEach(w => {
+          workoutsList.innerHTML += `
+            <div class="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-sm font-semibold text-slate-100">${w.activity}</span>
+                  <span class="text-[10px] uppercase font-semibold px-2 py-0.5 rounded bg-brand-500/10 text-brand-400 border border-brand-500/20">${w.intensity}</span>
+                </div>
+                <div class="mt-1 text-xs text-slate-400">
+                  Duration: ${Math.round(w.duration_minutes)} minutes
+                </div>
+              </div>
+              <div class="text-right">
+                <span class="text-base font-display font-bold text-emerald-400">~${Math.round(w.calories_burned)}</span>
+                <span class="text-[10px] text-slate-400 block">kcal burned</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      // Coach Assessment
+      document.getElementById('coachAck').innerText = d.coach_feedback.acknowledgement;
+      document.getElementById('coachNut').innerText = d.coach_feedback.nutrition_feedback;
+      document.getElementById('coachWork').innerText = d.coach_feedback.workout_feedback;
+      document.getElementById('coachAdapt').innerText = d.coach_feedback.adaptive_adjustment;
+
+      resultsDashboard.classList.remove('hidden');
+      resultsDashboard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function toggleAudio() {
+      const audioElem = document.getElementById('coachAudio');
+      if (audioElem.paused) {
+        audioElem.play();
+      } else {
+        audioElem.pause();
+      }
+    }
+  </script>
+</body>
+</html>
